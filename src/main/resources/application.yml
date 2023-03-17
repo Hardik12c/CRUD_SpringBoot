@@ -1,0 +1,15 @@
+server:
+  port: 3000
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/moveinsync
+    username: Hardik
+    password: Hard123@c
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+      show-sql: true
