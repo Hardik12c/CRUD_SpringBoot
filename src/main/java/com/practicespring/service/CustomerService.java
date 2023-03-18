@@ -1,6 +1,7 @@
 package com.practicespring.service;
 
 
+import constants.Crudconstants;
 import com.practicespring.repository.CustomerRepository;
 import com.practicespring.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class CustomerService {
 
     public ResponseEntity<Customer> getCustomerbyId(int id){
         if(customerRepository.findByid(id)==null){
-            return new ResponseEntity("Id not found",HttpStatus.NOT_FOUND);
+            return new ResponseEntity(Crudconstants.getIdNotFound(),HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(customerRepository.findByid(id),HttpStatus.OK);
     }
@@ -36,7 +37,7 @@ public class CustomerService {
     }
     public ResponseEntity<String> deletecustomer(Integer id){
         if(customerRepository.findByid(id)==null){
-            return new ResponseEntity("Id not found",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(Crudconstants.getIdNotFound(),HttpStatus.NOT_FOUND);
         }
         customerRepository.deleteById(id);
         return new ResponseEntity<>("Data deleted successfully",HttpStatus.OK);
@@ -45,7 +46,7 @@ public class CustomerService {
     public ResponseEntity<Customer> updateuser(Customer customer,int id){
         Customer oldcustomer=(customerRepository.findByid(id));
         if(oldcustomer==null){
-            return new ResponseEntity("Id not found",HttpStatus.NOT_FOUND);
+            return new ResponseEntity(Crudconstants.getIdNotFound(),HttpStatus.NOT_FOUND);
         }
         oldcustomer.setAge(customer.getAge());
         oldcustomer.setEmail(customer.getEmail());
